@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */ 
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-
+import image4 from './assets/image4.jpg';
 const VoteCollector = () => {
     // useState hook to store the currently selected meme, initial value is null (no meme selected)
     const [selectedMeme, setSelectedMeme] = useState(null);
+    const [voted, setVoted] = useState(false);
 
     // Function to handle checkbox changes, it updates the selectedMeme state to the value of the selected meme
     const handleCheckboxChange = (value) => {
         setSelectedMeme(value);
+        setVoted(true);
     };
 
     return (
@@ -53,6 +55,22 @@ const VoteCollector = () => {
                 onChange={() => handleCheckboxChange('Meme 3')}
             />
             <label htmlFor="meme3">Meme 3</label>
+            <br />
+            {voted && (
+               <div>
+                   <img
+                       src={image4} // Use imported image directly
+                       alt="You Voted" 
+                       style={{
+                           width: '300px', 
+                           height: 'auto', 
+                           objectFit: 'cover'
+                       }}
+                   />
+               </div>
+           )}
+
+
         </div>
     );
 };
